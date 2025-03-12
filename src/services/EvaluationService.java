@@ -50,14 +50,14 @@ public class EvaluationService implements IDao<Evaluation>{
     }
 
     public List<Evaluation> filtrerParEnseignant(int enseignantId) {
-        return evaluations.stream()
-                .filter(e -> e.getEnseignant_id() == enseignantId)
-                .collect(Collectors.toList());
-    }
+    return evaluations.stream()
+            .filter(e -> e.getEnseignant_id().getId() == enseignantId) // Assurez-vous que getId() retourne l'ID de l'enseignant
+            .collect(Collectors.toList());
+}
 
     public List<String> consulterCommentaires(int enseignantId) {
         return evaluations.stream()
-                .filter(e -> e.getEnseignant_id() == enseignantId)
+                .filter(e -> e.getEnseignant_id().getId() == enseignantId)
                 .map(Evaluation::getCommentaire)
                 .collect(Collectors.toList());
     }
